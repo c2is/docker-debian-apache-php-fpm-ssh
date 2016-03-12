@@ -1,4 +1,4 @@
-# C2is container for Debian Jessie Apache 2.4, Php 5.6 (FPM) and Ssh
+# C2is container for Debian Jessie Apache 2.4, Php 5.6 (FPM) and Ssh  
 
 ### Usage  
 
