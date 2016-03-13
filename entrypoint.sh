@@ -1,8 +1,14 @@
 #!/bin/bash
 set -e
 
+
 if [ -z "$WEBSITE_HOST" ]; then
   WEBSITE_HOST="website.docker"
+fi
+if [ -z "$VHOST_DIRNAME" ]; then
+  VHOST_DIRNAME="website"
+else
+  mkdir /var/www/$VHOST_DIRNAME
 fi
 if [ "$SYMFONY_VHOST_COMPLIANT" == "yes" ]; then
   SUFFIX="/web"
@@ -20,19 +26,19 @@ cat <<EOF >> /etc/apache2/sites-available/vhost-website.conf
         ServerName $WEBSITE_HOST
         ServerAlias *.$WEBSITE_HOST
         ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/website$PREFIX$SUFFIX
+        DocumentRoot /var/www/$VHOST_DIRNAME$PREFIX$SUFFIX
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-        <Directory /var/www/website$SUFFIX>
+        <Directory /var/www/$VHOST_DIRNAME$SUFFIX>
           Order allow,deny
           Allow from all
           Require all granted
           Options -Indexes +FollowSymLinks -MultiViews
         </Directory>
 
-        ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/website$PREFIX$SUFFIX/\$1
+        ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/$VHOST_DIRNAME$PREFIX$SUFFIX/\$1
 </VirtualHost>
 EOF
 
