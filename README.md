@@ -19,6 +19,8 @@ c2isapachefpm:
     environment:
         # Default: website.docker
         WEBSITE_HOST: projectname.loc
+        # Default: website
+        VHOST_DIRNAME: projectname
         # Default: no, DocumentRoot have not the trailing /web/
         SYMFONY_VHOST_COMPLIANT: yes
         CAPISTRANO_VHOST_COMPLIANT: "yes"
