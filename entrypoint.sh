@@ -15,9 +15,9 @@ if [ "$SYMFONY_VHOST_COMPLIANT" == "yes" ]; then
 fi
 
 if [ "$CAPISTRANO_VHOST_COMPLIANT" == "yes" ]; then
-  mkdir /var/www/website/releases
-  mkdir /var/www/website/shared
-  chown -R www-data:www-data /var/www/website
+  mkdir /var/www/$VHOST_DIRNAME/releases
+  mkdir /var/www/$VHOST_DIRNAME/shared
+  chown -R www-data:www-data /var/www/$VHOST_DIRNAME
   PREFIX="/current"
 
 fi
