@@ -42,7 +42,7 @@ cat <<EOF >> /etc/apache2/sites-available/vhost-website.conf
 </VirtualHost>
 EOF
 
-rm /etc/php5/fpm/pool.d/www.conf
+if [ -f /etc/php5/fpm/pool.d/www.conf ]; then rm /etc/php5/fpm/pool.d/www.conf; fi;
 
 cat <<EOF >> /etc/php5/fpm/pool.d/website.conf
 [website]
