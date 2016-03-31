@@ -46,11 +46,11 @@ if [ -f /etc/php5/fpm/pool.d/www.conf ]; then rm /etc/php5/fpm/pool.d/www.conf; 
 
 cat <<EOF >> /etc/php5/fpm/pool.d/website.conf
 [website]
-user = www-data
-group = www-data
+user = docker
+group = docker
 listen = 127.0.0.1:9000
-listen.owner = www-data
-listen.group = www-data
+listen.owner = docker
+listen.group = docker
 
 pm = dynamic
 pm.max_children = 5
