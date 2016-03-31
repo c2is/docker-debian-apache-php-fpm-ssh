@@ -36,6 +36,7 @@ cat <<EOF >> /etc/apache2/sites-available/vhost-website.conf
           Allow from all
           Require all granted
           Options -Indexes +FollowSymLinks -MultiViews
+	  AllowOverride All
         </Directory>
 
         ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/$VHOST_DIRNAME$PREFIX$SUFFIX/\$1
